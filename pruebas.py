@@ -1,9 +1,10 @@
-import sys
-from wrlparser import parse
+import numpy as np
+import trimesh
 
+mesh = trimesh.load_mesh("ImageToStl.com_hbp29-wt-id2-hc43-lacmol-3-espina 136.stl")
+#print(mesh.is_watertight)
+#print(mesh.volume)
 
-with open(file) as f:
-    l = "".join(f.readlines())
-    f.close()
-
-scene = parse(l)
+mesh.vertices -= mesh.center_mass
+#mesh.split()
+mesh.show()
