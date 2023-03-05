@@ -11,8 +11,9 @@ def decimation():
     reader2 = vtk.vtkSTLReader()
     reader2.SetFileName('ImageToStl.com_hbp29-wt-id2-hc43-lacmol-3-espina 136.stl')
     reader2.Update()
-    obj2 = reade2.GetOutput()
+    obj2 = reader2.GetOutput()
     mesh2=obj2.GetOutput()#vtkpolydata
+    
     print("Before decimation\n"
           "-----------------\n"
           "There are " + str(inputPoly.GetNumberOfPoints()) + "points.\n"
