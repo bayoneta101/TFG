@@ -1,5 +1,5 @@
 import numpy as np
-import matplotlib.pyplot as plt
+
 import pyvista as pv
 from scipy.interpolate import interp1d
 from stl import mesh
