@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 import pyvista as pv
 
+
 # Cargar las mallas
 mesh1 = o3d.io.read_triangle_mesh('ImageToStl.com_hbp29-wt-id2-hc43-lacmol-3-espina 136.stl')
 mesh2 = o3d.io.read_triangle_mesh('ImageToStl.com_hbp29-wt-id2-hc43-lacmol-3-espina 850.stl')
@@ -14,6 +15,7 @@ mesh2_v=np.asarray(mesh2.vertices).shape[0]
 
 # Decimar las mallas
 print("In 1:",mesh1_v,"In 2:",mesh2_v)#61154 91580
+
 #si tarda demasiado cambiar a mesh1 < mesh2
 #configurado para reducir al 90 % la malla  mas pequeña
 if mesh1_v > mesh2_v:
@@ -61,9 +63,11 @@ vertices2_norm = vertices2 / norm2[:, None]'''
 
 num_frames = 100
 interp_vertices = []
+interp_triangles = []#testing
 for i in range(num_frames):
     alpha = i / (num_frames - 1)
     interp_vertices.append((1 - alpha) * vertices1 + alpha * vertices2)
+    interp_triangles.append((1 - alpha) * triangles1 + alpha * triangles2)
 
 meshes = []
 for i in range(num_frames):
