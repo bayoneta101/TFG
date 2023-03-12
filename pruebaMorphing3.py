@@ -28,7 +28,7 @@ for idx,i in enumerate([ms1,ms2]):
     print('Input mesh has',temp.vertex_number(), 'vertex and', temp.face_number(), 'faces')
     
     while (temp.vertex_number() > target_vertex):
-        i.apply_filter('meshing_decimation_quadric_edge_collapse',targetfacenum=target_triangles,preservetopology=True,preservenormal=True,optimalplacement=False)
+        i.apply_filter('meshing_decimation_quadric_edge_collapse',targetfacenum=target_triangles,preservetopology=False,preservenormal=True,optimalplacement=False)
         temp=i.current_mesh()
         print('Step mesh has', temp.vertex_number(), 'vertex and', temp.face_number(), 'faces')
         target_triangles = target_triangles - (temp.vertex_number() - target_vertex)
@@ -51,6 +51,12 @@ triangles2 = m2.face_matrix()
 print(vertices1.shape,triangles1.shape,vertices2.shape,triangles2.shape)
 #ms.apply_filter('meshing_decimation_quadric_edge_collapse',targetfacenum=20000)
 #print(m.vertex_number(), 'vertex',m.face_number(), 'face')
+
+'''#Normalizar los vectores
+norm1 = np.linalg.norm(vertices1, axis=1)
+norm2 = np.linalg.norm(vertices2, axis=1)
+vertices1 = vertices1 / norm1[:, None]
+vertices2 = vertices2 / norm2[:, None]'''
 
 num_frames = 10
 interp_vertices = []

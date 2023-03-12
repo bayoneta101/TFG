@@ -27,5 +27,8 @@ def pyvista_():
     pl.import_vrml("HBP29-WT-ID2-HC43-LacMol-3-Espina 136.wrl")
     pl.show()   
  
-trimesh_()    
+#trimesh_()    
 #pyvista_()
+#x = np.array([[1, 2, 3], [3, 4, 5], [5, 6, 7]])
+#print(x[:,0])
+#print(x[:,:2])
