@@ -1,9 +1,6 @@
 import open3d as o3d
 import numpy as np
-from scipy.interpolate import interp1d
-import matplotlib.pyplot as plt
-from tqdm import tqdm
-import pyvista as pv
+
 
 
 # Cargar las mallas
@@ -61,13 +58,13 @@ vertices1_norm = vertices1 / norm1[:, None]
 vertices2_norm = vertices2 / norm2[:, None]'''
 
 
-num_frames = 100
+num_frames = 10
 interp_vertices = []
 interp_triangles = []#testing
 for i in range(num_frames):
     alpha = i / (num_frames - 1)
     interp_vertices.append((1 - alpha) * vertices1 + alpha * vertices2)
-    interp_triangles.append((1 - alpha) * triangles1 + alpha * triangles2)
+#    interp_triangles.append((1 - alpha) * triangles1 + alpha * triangles2)
 
 meshes = []
 for i in range(num_frames):
