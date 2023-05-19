@@ -1,8 +1,6 @@
 import open3d as o3d
 import numpy as np
 
-
-
 # Cargar las mallas
 mesh1 = o3d.io.read_triangle_mesh('ImageToStl.com_hbp29-wt-id2-hc43-lacmol-3-espina 136.stl')
 mesh2 = o3d.io.read_triangle_mesh('ImageToStl.com_hbp29-wt-id2-hc43-lacmol-3-espina 850.stl')
@@ -10,11 +8,11 @@ mesh1_v=np.asarray(mesh1.vertices).shape[0]
 mesh2_v=np.asarray(mesh2.vertices).shape[0]
 
 
-# Decimar las mallas
+# Diezmar las mallas
 print("In 1:",mesh1_v,"In 2:",mesh2_v)#61154 91580
 
 #si tarda demasiado cambiar a mesh1 < mesh2
-#configurado para reducir al 90 % la malla  mas pequeña
+#configurado para reducir al 10 % de la malla  mas pequeña
 if mesh1_v > mesh2_v:
     target_vertex=round(mesh1_v*0.1)
 else:
@@ -23,6 +21,7 @@ target_triangles=100+2*target_vertex
 
 print("target:",target_vertex,target_triangles)
 mesh_array=[mesh1,mesh2]
+#diezmado convergente
 for idx,i in enumerate(mesh_array):
     print('Input mesh has', np.asarray(i.vertices).shape[0], 'vertex')
     while (np.asarray(i.vertices).shape[0] > target_vertex):
@@ -41,7 +40,6 @@ print('---')
 
 
 
-
 # Obtener los vértices decimados
 vertices1 = np.asarray(mesh1.vertices)
 triangles1 = np.asarray(mesh1.triangles)
@@ -50,15 +48,7 @@ triangles2 = np.asarray(mesh2.triangles)
 
 print(vertices1.shape,triangles1.shape,vertices2.shape,triangles2.shape)
 
-
-'''# Normalizar los vectores
-norm1 = np.linalg.norm(vertices1, axis=1)
-norm2 = np.linalg.norm(vertices2, axis=1)
-vertices1_norm = vertices1 / norm1[:, None]
-vertices2_norm = vertices2 / norm2[:, None]'''
-
-
-num_frames = 10
+num_frames = 6
 interp_vertices = []
 interp_triangles = []#testing
 for i in range(num_frames):
